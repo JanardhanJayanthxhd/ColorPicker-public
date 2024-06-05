@@ -10,7 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'jkhgfdstryfghkjlk;l'
+app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'
 app.app_context().push()
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///ImageDatabase.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
