@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>colorpicker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="site">
+        <header class="header">
+            <nav class="nav  container">
+                <h1 class="nav__h1">ColorPicker</h1>
+                <a href="{{ url_for('home') }}">
+                    <img class="nav__img" src="{{ url_for('static', filename='img/color-wheel.png') }}" alt="a color wheel" width="48" height="48">
+                </a>
+            </nav>
+        </header>
+        <main class="main container">
+            <section class="section section__img">
+                <h1 class="main__h1">{{ image.filename }}</h1>
+                <figure class="figure">
+                    <img class="main__img" src="data:image/png;base64,{{ image.b64_image }}" alt="{{ image.filename }}">
+                </figure>
+                <h2 class="list__title">Top 10 colors: </h2>
+                <ul class="unordered_list">
+                    {% for item in image.get_top_colors() %}
+                        {% for color, code in item.items() %}
+                            <li class="list__item">
+                                <p class="list__p">
+                                    <span style="color: {{code}};">{{ color }}</span> : {{ code }} - <a class="nowrap" href="#" onclick="copyToClipboard('{{ code }}')">Copy Code</a>
+                                </p>
+                            </li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+                <a class="main__link" href="{{ url_for('home') }}">Upload again</a>
+            </section>
+        </main>
+        <footer class="footer">
+            <p class=" text-center container">&copy; colorpicker.</p>
+        </footer>
+    </div>
+    <script>
+        <!-- copy to clipboard fuction -->
+        function copyToClipboard(text) {
+            const tempInput = document.createElement("input");
+            document.body.appendChild(tempInput);
+            tempInput.value = text;
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Copied to clipboard: " + text);
+        }
+    </script>
+</body>
+</html>

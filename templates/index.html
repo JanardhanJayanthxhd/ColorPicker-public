@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>colorpicker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="site">
+        <header class="header">
+            <nav class="nav  container">
+                <h1 class="nav__h1">ColorPicker</h1>
+                <a href="#">
+                    <img class="nav__img" src="{{ url_for('static', filename='img/color-wheel.png') }}" alt="a color wheel" width="48" height="48">
+                </a>
+            </nav>
+        </header>
+        <main class="main container">
+            <section class="section section__hero">
+                <h1 class="hero__h1">Welcome to <span class="colored">ColorPicker</span></h1>
+                <p class="hero__p">Upload an image to reveal its top 10 colors.</p>
+               <form class="hero__form" action="{{ url_for('home') }}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" id="file" accept="image/*" required>
+                    <button class="btn" type="submit">Upload!</button>
+               </form>
+            </section>
+        </main>
+        <footer class="footer">
+            <p class=" text-center container">&copy; colorpicker.</p>
+        </footer>
+    </div>
+</body>
+</html>
